@@ -146,6 +146,19 @@ function App() {
                 {getAdvanceLabel(room)}
               </Button>
             ) : null}
+            {isHost ? (
+              <Button
+                wide
+                variant="ghost"
+                onClick={() => {
+                  if (window.confirm("End this room and remove everyone from the session?")) {
+                    actions.endRoom();
+                  }
+                }}
+              >
+                End room
+              </Button>
+            ) : null}
             <div className="host-summary">
               <span className="host-badge">{hostPlayer?.name ?? "Host"} is moderating</span>
             </div>

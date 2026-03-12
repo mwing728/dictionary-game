@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import type {
+  RoomEndedEvent,
   RoomErrorEvent,
   RoomJoinedEvent,
   RoomView,
@@ -68,6 +69,15 @@ class RoomStore {
       this.setState({ error: payload.message, reconnecting: false });
     });
 
+    socket.on("room:ended", (payload: RoomEndedEvent) => {
+      writeSession(null);
+      this.setState({
+        room: null,
+        reconnecting: false,
+        error: payload.message,
+      });
+    });
+
     if (!socket.connected) {
       this.setState({ status: "connecting" });
       socket.connect();
@@ -112,6 +122,10 @@ class RoomStore {
 
   advance(): void {
     getGameSocket().emit("room:advance");
+  }
+
+  endRoom(): void {
+    getGameSocket().emit("room:end");
   }
 
   clearError(): void {

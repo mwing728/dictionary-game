@@ -127,6 +127,15 @@ export class RoomManager {
     this.persistAndPublish(room);
   }
 
+  endRoom(code: string, playerId: string): RoomSnapshot {
+    const room = this.requireRoom(code);
+    this.assertHost(room, playerId);
+    this.clearTimer(room.code);
+    this.rooms.delete(room.code);
+    this.store.deleteRoom(room.code);
+    return room;
+  }
+
   close(): void {
     for (const timer of this.timers.values()) {
       clearTimeout(timer);
@@ -161,13 +170,19 @@ export class RoomManager {
     }
   }
 
-  private schedule(room: RoomSnapshot): void {
-    const existingTimer = this.timers.get(room.code);
+  private clearTimer(code: string): void {
+    const existingTimer = this.timers.get(code);
 
-    if (existingTimer) {
-      clearTimeout(existingTimer);
-      this.timers.delete(room.code);
+    if (!existingTimer) {
+      return;
     }
+
+    clearTimeout(existingTimer);
+    this.timers.delete(code);
+  }
+
+  private schedule(room: RoomSnapshot): void {
+    this.clearTimer(room.code);
 
     const deadlineAt = room.activeRound?.phaseDeadlineAt;
 

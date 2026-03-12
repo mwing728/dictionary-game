@@ -72,6 +72,18 @@ export class SqliteStore {
       .get(sessionToken) as SessionRow | undefined;
   }
 
+  deleteRoom(code: string): void {
+    const deleteRoomStatement = this.db.prepare("DELETE FROM rooms WHERE code = ?");
+    const deleteSessionsStatement = this.db.prepare("DELETE FROM sessions WHERE room_code = ?");
+
+    const transaction = this.db.transaction(() => {
+      deleteRoomStatement.run(code);
+      deleteSessionsStatement.run(code);
+    });
+
+    transaction();
+  }
+
   close(): void {
     this.db.close();
   }

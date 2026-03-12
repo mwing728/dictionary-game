@@ -195,6 +195,11 @@ export interface RoomErrorEvent {
   message: string;
 }
 
+export interface RoomEndedEvent {
+  reason: "ended_by_host";
+  message: string;
+}
+
 export const DEFAULT_SETTINGS: GameSettings = {
   totalRounds: 20,
   maxPlayers: 8,

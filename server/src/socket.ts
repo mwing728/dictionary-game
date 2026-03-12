@@ -2,6 +2,7 @@ import type { Server as HttpServer } from "node:http";
 import type {
   CreateRoomPayload,
   JoinPayload,
+  RoomEndedEvent,
   ReconnectPayload,
   SubmitPayload,
   VotePayload,
@@ -98,6 +99,20 @@ export function createSocketServer(server: HttpServer, roomManager: RoomManager)
       });
     });
 
+    socket.on("room:end", () => {
+      runSafely(socket, () => {
+        const session = requireSession(socket.id);
+        const room = roomManager.endRoom(session.roomCode, session.playerId);
+        const payload: RoomEndedEvent = {
+          reason: "ended_by_host",
+          message: "The host ended the room session.",
+        };
+
+        io.to(room.code).emit("room:ended", payload);
+        clearRoomSessions(room.code, Object.keys(room.players));
+      });
+    });
+
     socket.on("disconnect", () => {
       const session = sessionsBySocket.get(socket.id);
 
@@ -140,6 +155,24 @@ export function createSocketServer(server: HttpServer, roomManager: RoomManager)
     }
 
     return session;
+  }
+
+  function clearRoomSessions(roomCode: string, playerIds: string[]): void {
+    for (const playerId of playerIds) {
+      const socketIds = socketsByPlayer.get(playerId);
+
+      if (!socketIds) {
+        continue;
+      }
+
+      for (const socketId of socketIds) {
+        sessionsBySocket.delete(socketId);
+      }
+
+      socketsByPlayer.delete(playerId);
+    }
+
+    io.in(roomCode).socketsLeave(roomCode);
   }
 }
 
