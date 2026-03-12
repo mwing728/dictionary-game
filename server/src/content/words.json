@@ -1,0 +1,114 @@
+[
+  {
+    "id": "abibliophobia",
+    "word": "abibliophobia",
+    "definition": "the fear of running out of reading material",
+    "category": "Oddities",
+    "difficulty": "easy"
+  },
+  {
+    "id": "callipygian",
+    "word": "callipygian",
+    "definition": "having shapely buttocks",
+    "category": "Body",
+    "difficulty": "medium"
+  },
+  {
+    "id": "crepuscular",
+    "word": "crepuscular",
+    "definition": "active at twilight",
+    "category": "Nature",
+    "difficulty": "easy"
+  },
+  {
+    "id": "defenestration",
+    "word": "defenestration",
+    "definition": "the act of throwing something or someone out of a window",
+    "category": "History",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ephemeral",
+    "word": "ephemeral",
+    "definition": "lasting for a very short time",
+    "category": "Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "floccinaucinihilipilification",
+    "word": "floccinaucinihilipilification",
+    "definition": "the act of describing something as unimportant",
+    "category": "Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "gobemouche",
+    "word": "gobemouche",
+    "definition": "a gullible or easily deceived person",
+    "category": "People",
+    "difficulty": "hard"
+  },
+  {
+    "id": "halcyon",
+    "word": "halcyon",
+    "definition": "calm, peaceful, and happy",
+    "category": "Mood",
+    "difficulty": "medium"
+  },
+  {
+    "id": "interrobang",
+    "word": "interrobang",
+    "definition": "a punctuation mark combining a question mark and an exclamation point",
+    "category": "Language",
+    "difficulty": "medium"
+  },
+  {
+    "id": "jentacular",
+    "word": "jentacular",
+    "definition": "relating to breakfast",
+    "category": "Food",
+    "difficulty": "hard"
+  },
+  {
+    "id": "limerence",
+    "word": "limerence",
+    "definition": "the state of being infatuated with another person",
+    "category": "Emotion",
+    "difficulty": "medium"
+  },
+  {
+    "id": "nemophilist",
+    "word": "nemophilist",
+    "definition": "a person who loves forests or woods",
+    "category": "Nature",
+    "difficulty": "medium"
+  },
+  {
+    "id": "petrichor",
+    "word": "petrichor",
+    "definition": "the pleasant smell after rain falls on dry ground",
+    "category": "Nature",
+    "difficulty": "easy"
+  },
+  {
+    "id": "quirk",
+    "word": "quidnunc",
+    "definition": "a person eager to know and discuss the latest news and gossip",
+    "category": "People",
+    "difficulty": "hard"
+  },
+  {
+    "id": "raconteur",
+    "word": "raconteur",
+    "definition": "a person who tells stories in an entertaining way",
+    "category": "People",
+    "difficulty": "easy"
+  },
+  {
+    "id": "sonder",
+    "word": "sonder",
+    "definition": "the realization that every passerby has a life as vivid and complex as your own",
+    "category": "Emotion",
+    "difficulty": "medium"
+  }
+]

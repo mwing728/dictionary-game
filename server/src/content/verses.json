@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ephesians-2-8",
+    "verse": "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God:",
+    "reference": "Ephesians 2:8",
+    "category": "Salvation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "isaiah-26-3",
+    "verse": "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.",
+    "reference": "Isaiah 26:3",
+    "category": "Comfort",
+    "difficulty": "medium"
+  },
+  {
+    "id": "proverbs-3-5",
+    "verse": "Trust in the Lord with all thine heart; and lean not unto thine own understanding.",
+    "reference": "Proverbs 3:5",
+    "category": "Wisdom",
+    "difficulty": "easy"
+  },
+  {
+    "id": "joshua-1-9",
+    "verse": "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the Lord thy God is with thee whithersoever thou goest.",
+    "reference": "Joshua 1:9",
+    "category": "Encouragement",
+    "difficulty": "medium"
+  },
+  {
+    "id": "jeremiah-29-11",
+    "verse": "For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end.",
+    "reference": "Jeremiah 29:11",
+    "category": "Hope",
+    "difficulty": "medium"
+  },
+  {
+    "id": "romans-8-28",
+    "verse": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
+    "reference": "Romans 8:28",
+    "category": "Faith",
+    "difficulty": "medium"
+  },
+  {
+    "id": "matthew-5-14",
+    "verse": "Ye are the light of the world. A city that is set on an hill cannot be hid.",
+    "reference": "Matthew 5:14",
+    "category": "Witness",
+    "difficulty": "easy"
+  },
+  {
+    "id": "proverbs-16-9",
+    "verse": "A man's heart deviseth his way: but the Lord directeth his steps.",
+    "reference": "Proverbs 16:9",
+    "category": "Guidance",
+    "difficulty": "medium"
+  },
+  {
+    "id": "isaiah-40-31",
+    "verse": "But they that wait upon the Lord shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+    "reference": "Isaiah 40:31",
+    "category": "Strength",
+    "difficulty": "medium"
+  },
+  {
+    "id": "hebrews-11-3",
+    "verse": "Through faith we understand that the worlds were framed by the word of God, so that things which are seen were not made of things which do appear.",
+    "reference": "Hebrews 11:3",
+    "category": "Creation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "1-corinthians-13-4",
+    "verse": "Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up.",
+    "reference": "1 Corinthians 13:4",
+    "category": "Love",
+    "difficulty": "medium"
+  },
+  {
+    "id": "galatians-5-22",
+    "verse": "But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith.",
+    "reference": "Galatians 5:22",
+    "category": "Fruit of the Spirit",
+    "difficulty": "medium"
+  }
+]
