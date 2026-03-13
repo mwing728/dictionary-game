@@ -608,6 +608,21 @@ textarea {
   box-shadow: 0 10px 24px rgba(114, 88, 58, 0.08);
 }
 
+.scoreboard-stage__row--gold {
+  border-color: rgba(210, 167, 61, 0.35);
+  box-shadow: 0 12px 28px rgba(210, 167, 61, 0.14);
+}
+
+.scoreboard-stage__row--silver {
+  border-color: rgba(150, 157, 168, 0.32);
+  box-shadow: 0 12px 28px rgba(150, 157, 168, 0.12);
+}
+
+.scoreboard-stage__row--bronze {
+  border-color: rgba(173, 117, 78, 0.32);
+  box-shadow: 0 12px 28px rgba(173, 117, 78, 0.12);
+}
+
 .scoreboard-stage__row--me {
   border-color: rgba(123, 143, 103, 0.35);
   background: rgba(240, 245, 233, 0.95);
@@ -624,6 +639,24 @@ textarea {
   font-weight: 800;
   color: #8d6844;
   background: rgba(242, 229, 201, 0.9);
+}
+
+.scoreboard-stage__rank--gold {
+  color: #6b4d11;
+  background: linear-gradient(135deg, #f6df94 0%, #d4a53a 100%);
+  box-shadow: 0 8px 18px rgba(212, 165, 58, 0.24);
+}
+
+.scoreboard-stage__rank--silver {
+  color: #4d5865;
+  background: linear-gradient(135deg, #e4e8ed 0%, #aeb6c1 100%);
+  box-shadow: 0 8px 18px rgba(174, 182, 193, 0.22);
+}
+
+.scoreboard-stage__rank--bronze {
+  color: #6c4329;
+  background: linear-gradient(135deg, #ddb08c 0%, #b8734e 100%);
+  box-shadow: 0 8px 18px rgba(184, 115, 78, 0.2);
 }
 
 .scoreboard-stage__player {

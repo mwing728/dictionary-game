@@ -229,10 +229,6 @@ export function castVote(room: RoomSnapshot, playerId: string, optionId: string,
   };
 
   touch(room, now);
-
-  if (Object.keys(round.votes).length >= getEligibleVoterCount(room, round)) {
-    moveToReveal(room, now);
-  }
 }
 
 export function advancePhase(room: RoomSnapshot, promptBanks: PromptBanks, now = Date.now()): void {

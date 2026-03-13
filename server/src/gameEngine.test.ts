@@ -81,6 +81,10 @@ describe("game engine", () => {
     castVote(room, alice.id, realOption!.id, 6000);
     castVote(room, bob.id, aliceBluff!.id, 7000);
 
+    expect(room.phase).toBe("voting");
+    expect(room.activeRound?.phaseDeadlineAt).toBe(4000 + room.settings.votingSeconds * 1000);
+
+    advancePhase(room, promptBanks, 8000);
     expect(room.phase).toBe("reveal");
     expect(room.activeRound?.phaseDeadlineAt).toBeNull();
     expect(room.players[room.hostId]?.score).toBe(0);
@@ -88,10 +92,10 @@ describe("game engine", () => {
     expect(room.players[bob.id]?.score).toBe(0);
     expect(room.activeRound?.reveal?.scoreDeltas).toHaveLength(2);
 
-    advancePhase(room, promptBanks, 8000);
+    advancePhase(room, promptBanks, 9000);
     expect(room.phase).toBe("scoreboard");
     expect(room.activeRound?.phaseDeadlineAt).toBeNull();
-    advancePhase(room, promptBanks, 9000);
+    advancePhase(room, promptBanks, 10000);
     expect(room.phase).toBe("submission");
     expect(room.currentRoundIndex).toBe(1);
     expect(room.activeRound?.prompt.kind).toBe("bibleVerse");
@@ -123,8 +127,12 @@ describe("game engine", () => {
     castVote(room, guest.id, realOption!.id, 4000);
     castVote(room, secondGuest.id, realOption!.id, 5000);
     castVote(room, thirdGuest.id, realOption!.id, 5500);
+
+    expect(room.phase).toBe("voting");
+
     advancePhase(room, focusedPromptBanks, 6000);
     advancePhase(room, focusedPromptBanks, 7000);
+    advancePhase(room, focusedPromptBanks, 8000);
 
     expect(room.phase).toBe("submission");
     expect(room.activeRound?.prompt.kind).toBe("bibleVerse");
@@ -190,6 +198,9 @@ describe("game engine", () => {
     castVote(room, bob.id, realOption!.id, 6000);
     castVote(room, cara.id, bobBluff!.id, 7000);
 
+    expect(room.phase).toBe("voting");
+
+    advancePhase(room, focusedPromptBanks, 8000);
     expect(room.phase).toBe("reveal");
     expect(room.players[alice.id]?.score).toBe(2);
     expect(room.players[bob.id]?.score).toBe(3);
@@ -219,8 +230,12 @@ describe("game engine", () => {
     castVote(room, guest.id, firstRoundRealOption!.id, 4000);
     castVote(room, secondGuest.id, firstRoundRealOption!.id, 5000);
     castVote(room, thirdGuest.id, firstRoundRealOption!.id, 5500);
+
+    expect(room.phase).toBe("voting");
+
     advancePhase(room, focusedPromptBanks, 6000);
     advancePhase(room, focusedPromptBanks, 7000);
+    advancePhase(room, focusedPromptBanks, 8000);
 
     expect(room.phase).toBe("submission");
     expect(room.activeRound?.prompt.kind).toBe("bibleVerse");
@@ -301,6 +316,9 @@ describe("game engine", () => {
     castVote(room, bob.id, realOption!.id, 6000);
     castVote(room, cara.id, bobBluff!.id, 7000);
 
+    expect(room.phase).toBe("voting");
+
+    advancePhase(room, focusedPromptBanks, 8000);
     expect(room.phase).toBe("reveal");
     expect(room.players[alice.id]?.score).toBe(2);
     expect(room.players[bob.id]?.score).toBe(3);

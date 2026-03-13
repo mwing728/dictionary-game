@@ -464,9 +464,11 @@ function ScoreboardView({ room }: { room: RoomView }) {
           {rankedPlayers.map((player, index) => (
             <div
               key={player.id}
-              className={`scoreboard-stage__row ${player.id === room.meId ? "scoreboard-stage__row--me" : ""}`}
+              className={`scoreboard-stage__row ${getScoreboardMedalClass(index)} ${player.id === room.meId ? "scoreboard-stage__row--me" : ""}`.trim()}
             >
-              <div className="scoreboard-stage__rank">{index + 1}</div>
+              <div className={`scoreboard-stage__rank ${getScoreboardMedalClass(index, "scoreboard-stage__rank")}`.trim()}>
+                {index + 1}
+              </div>
               <div className="scoreboard-stage__player">
                 <strong>{player.name}</strong>
                 <span>{player.connected ? "Ready to continue" : "Reconnecting"}</span>
@@ -593,6 +595,19 @@ function getAdvanceLabel(room: RoomView): string {
       return room.roundNumber >= room.totalRounds ? "Show final results" : "Start next round";
     default:
       return "Host advance";
+  }
+}
+
+function getScoreboardMedalClass(index: number, prefix = "scoreboard-stage__row"): string {
+  switch (index) {
+    case 0:
+      return `${prefix}--gold`;
+    case 1:
+      return `${prefix}--silver`;
+    case 2:
+      return `${prefix}--bronze`;
+    default:
+      return "";
   }
 }
 
