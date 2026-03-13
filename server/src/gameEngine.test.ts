@@ -82,6 +82,7 @@ describe("game engine", () => {
     castVote(room, bob.id, aliceBluff!.id, 7000);
 
     expect(room.phase).toBe("reveal");
+    expect(room.activeRound?.phaseDeadlineAt).toBeNull();
     expect(room.players[room.hostId]?.score).toBe(0);
     expect(room.players[alice.id]?.score).toBe(3);
     expect(room.players[bob.id]?.score).toBe(0);

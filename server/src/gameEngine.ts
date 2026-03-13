@@ -457,7 +457,7 @@ function moveToReveal(room: RoomSnapshot, now: number): void {
     scoreDeltas,
   };
   round.phaseStartedAt = now;
-  round.phaseDeadlineAt = now + room.settings.revealSeconds * 1000;
+  round.phaseDeadlineAt = null;
   touch(room, now);
 }
 

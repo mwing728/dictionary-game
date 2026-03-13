@@ -91,6 +91,8 @@ function App() {
   const participantPlayers = room.players.filter((player) => !player.isHost);
   const isHost = Boolean(me?.isHost);
   const isParticipantPlayPhase = !isHost && (room.phase === "submission" || room.phase === "voting");
+  const isPlayerFocusedLayout = !isHost;
+  const showTopbarTimer = isHost && room.phase !== "reveal";
 
   return (
     <main className="shell shell--game">
@@ -104,15 +106,15 @@ function App() {
         </div>
         <div className="topbar__actions">
           <span className="phase-tag">{phaseCopy.label}</span>
-          {!isParticipantPlayPhase ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
+          {showTopbarTimer ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
           <Button variant="ghost" onClick={() => actions.disconnect()}>
             Leave
           </Button>
         </div>
       </header>
 
-      <section className={`layout ${isParticipantPlayPhase ? "layout--single" : ""}`}>
-        {!isParticipantPlayPhase ? (
+      <section className={`layout ${isPlayerFocusedLayout ? "layout--single" : ""}`}>
+        {isHost ? (
           <aside className="sidebar">
             <Card className="scoreboard-card">
               <h2>Players</h2>
@@ -169,9 +171,9 @@ function App() {
         ) : null}
 
         <section className="main-panel">
-          <Card className={`round-card ${isParticipantPlayPhase ? "round-card--play-focus" : ""}`}>
-            <div className={`round-header ${isParticipantPlayPhase ? "round-header--play-focus" : ""}`}>
-              <div className={isParticipantPlayPhase ? "round-header__content round-header__content--play-focus" : ""}>
+          <Card className={`round-card ${isPlayerFocusedLayout ? "round-card--play-focus" : ""}`}>
+            <div className={`round-header ${isPlayerFocusedLayout ? "round-header--play-focus" : ""}`}>
+              <div className={isPlayerFocusedLayout ? "round-header__content round-header__content--play-focus" : ""}>
                 <span className="hero__eyebrow">
                   {room.round ? `${room.round.promptLabel} · ${room.round.category}` : "Warmup"}
                 </span>
@@ -179,7 +181,7 @@ function App() {
                   {room.round?.promptText ?? "Waiting in lobby"}
                 </h2>
               </div>
-              <div className={`round-header__meta ${isParticipantPlayPhase ? "round-header__meta--play-focus" : ""}`}>
+              <div className={`round-header__meta ${isPlayerFocusedLayout ? "round-header__meta--play-focus" : ""}`}>
                 {isParticipantPlayPhase ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
                 <div className="difficulty-pill">{room.round?.difficulty ?? "party"}</div>
               </div>
