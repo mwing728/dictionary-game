@@ -207,6 +207,12 @@ textarea {
   background: rgba(166, 136, 101, 0.1);
 }
 
+.button--danger {
+  color: #fff7f3;
+  background: linear-gradient(135deg, #c7654e 0%, #a94732 100%);
+  box-shadow: 0 14px 32px rgba(169, 71, 50, 0.22);
+}
+
 .button--update {
   color: #fffaf7;
   background: linear-gradient(135deg, #5f7893 0%, #7593b2 100%);

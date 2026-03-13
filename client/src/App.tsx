@@ -107,7 +107,14 @@ function App() {
         <div className="topbar__actions">
           <span className="phase-tag">{phaseCopy.label}</span>
           {showTopbarTimer ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
-          <Button variant="ghost" onClick={() => actions.disconnect()}>
+          <Button
+            variant="danger"
+            onClick={() => {
+              if (window.confirm("Leave this room? You can rejoin later if your seat is still active.")) {
+                actions.disconnect();
+              }
+            }}
+          >
             Leave
           </Button>
         </div>
@@ -398,21 +405,6 @@ function RevealView({ room }: { room: RoomView }) {
           ? "Final standings are set. Thank you for playing together."
           : "Here is the reveal. Correct guesses earn two points, and every player who chose your answer earns you one point."}
       </p>
-      <div className="option-list">
-        {room.round?.options.map((option) => (
-          <div
-            key={option.id}
-            className={`option-card option-card--reveal ${
-              option.isCorrect ? "option-card--correct" : ""
-            }`}
-          >
-            <span className="option-card__label">{getRevealOptionLabel(room, option, promptKind)}</span>
-            <strong>{option.text}</strong>
-            {typeof option.voteCount === "number" ? <span>{option.voteCount} vote(s)</span> : null}
-          </div>
-        ))}
-      </div>
-
       {room.round?.reveal ? (
         <Card className="reveal-points">
           <div className={`reveal-points__hero ${myRoundPoints > 0 ? "reveal-points__hero--earned" : ""}`}>
@@ -438,6 +430,21 @@ function RevealView({ room }: { room: RoomView }) {
           )}
         </Card>
       ) : null}
+
+      <div className="option-list">
+        {room.round?.options.map((option) => (
+          <div
+            key={option.id}
+            className={`option-card option-card--reveal ${
+              option.isCorrect ? "option-card--correct" : ""
+            }`}
+          >
+            <span className="option-card__label">{getRevealOptionLabel(room, option, promptKind)}</span>
+            <strong>{option.text}</strong>
+            {typeof option.voteCount === "number" ? <span>{option.voteCount} vote(s)</span> : null}
+          </div>
+        ))}
+      </div>
 
       {room.phase === "finished" ? (
         <div className="winner-banner">
