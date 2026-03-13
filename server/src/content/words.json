@@ -1,30 +1,30 @@
 [
   {
-    "id": "abibliophobia",
-    "word": "abibliophobia",
-    "definition": "the fear of running out of reading material",
-    "category": "Oddities",
-    "difficulty": "easy"
+    "id": "antediluvian",
+    "word": "antediluvian",
+    "definition": "extremely old-fashioned or belonging to a very distant past",
+    "category": "History",
+    "difficulty": "medium"
   },
   {
-    "id": "benediction",
-    "word": "benediction",
-    "definition": "a spoken blessing, especially at the close of a worship service",
-    "category": "Church",
-    "difficulty": "easy"
+    "id": "circumspect",
+    "word": "circumspect",
+    "definition": "careful, cautious, and unwilling to take unnecessary risks",
+    "category": "People",
+    "difficulty": "hard"
   },
   {
     "id": "crepuscular",
     "word": "crepuscular",
     "definition": "active at twilight",
     "category": "Nature",
-    "difficulty": "easy"
+    "difficulty": "medium"
   },
   {
-    "id": "doxology",
-    "word": "doxology",
-    "definition": "a short hymn or verse of praise to God",
-    "category": "Church",
+    "id": "mellifluous",
+    "word": "mellifluous",
+    "definition": "pleasantly smooth and musical to hear",
+    "category": "Sound",
     "difficulty": "medium"
   },
   {
@@ -32,28 +32,28 @@
     "word": "ephemeral",
     "definition": "lasting for a very short time",
     "category": "Language",
-    "difficulty": "easy"
-  },
-  {
-    "id": "epistle",
-    "word": "epistle",
-    "definition": "a formal letter, especially one found in the New Testament",
-    "category": "Scripture",
     "difficulty": "medium"
   },
   {
-    "id": "fellowship",
-    "word": "fellowship",
-    "definition": "friendly shared life, encouragement, and community among people",
-    "category": "Church",
-    "difficulty": "easy"
+    "id": "perspicacious",
+    "word": "perspicacious",
+    "definition": "having keen insight and sound judgment",
+    "category": "People",
+    "difficulty": "hard"
   },
   {
-    "id": "halcyon",
-    "word": "halcyon",
-    "definition": "calm, peaceful, and happy",
-    "category": "Mood",
+    "id": "fastidious",
+    "word": "fastidious",
+    "definition": "very attentive to detail and hard to satisfy",
+    "category": "People",
     "difficulty": "medium"
+  },
+  {
+    "id": "surreptitious",
+    "word": "surreptitious",
+    "definition": "done secretly and intended to avoid notice",
+    "category": "Behavior",
+    "difficulty": "hard"
   },
   {
     "id": "interrobang",
@@ -63,52 +63,52 @@
     "difficulty": "medium"
   },
   {
-    "id": "hosanna",
-    "word": "hosanna",
-    "definition": "an exclamation of praise, adoration, or joyful appeal to God",
-    "category": "Worship",
+    "id": "luminescent",
+    "word": "luminescent",
+    "definition": "giving off light without being heated",
+    "category": "Science",
     "difficulty": "medium"
   },
   {
-    "id": "parable",
-    "word": "parable",
-    "definition": "a simple story used to teach a moral or spiritual lesson",
-    "category": "Scripture",
-    "difficulty": "easy"
-  },
-  {
-    "id": "petrichor",
-    "word": "petrichor",
-    "definition": "the pleasant smell after rain falls on dry ground",
-    "category": "Nature",
-    "difficulty": "easy"
-  },
-  {
-    "id": "raconteur",
-    "word": "raconteur",
-    "definition": "a person who tells stories in an entertaining way",
-    "category": "People",
-    "difficulty": "easy"
-  },
-  {
-    "id": "selah",
-    "word": "selah",
-    "definition": "a term in the Psalms often understood as a pause for reflection",
-    "category": "Scripture",
+    "id": "inexorable",
+    "word": "inexorable",
+    "definition": "impossible to stop or prevent",
+    "category": "Language",
     "difficulty": "hard"
   },
   {
-    "id": "sonder",
-    "word": "sonder",
-    "definition": "the realization that every passerby has a life as vivid and complex as your own",
-    "category": "Emotion",
+    "id": "effervescent",
+    "word": "effervescent",
+    "definition": "lively and enthusiastic or bubbling with energy",
+    "category": "Mood",
     "difficulty": "medium"
   },
   {
-    "id": "stewardship",
-    "word": "stewardship",
-    "definition": "the careful and responsible management of something entrusted to your care",
-    "category": "Church",
+    "id": "loquacious",
+    "word": "loquacious",
+    "definition": "tending to talk a great deal",
+    "category": "People",
     "difficulty": "medium"
+  },
+  {
+    "id": "sesquipedalian",
+    "word": "sesquipedalian",
+    "definition": "characterized by long words or a fondness for using them",
+    "category": "Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "indefatigable",
+    "word": "indefatigable",
+    "definition": "persisting tirelessly without becoming weary",
+    "category": "People",
+    "difficulty": "hard"
+  },
+  {
+    "id": "quixotic",
+    "word": "quixotic",
+    "definition": "exceedingly idealistic in a way that is unrealistic",
+    "category": "People",
+    "difficulty": "hard"
   }
 ]
