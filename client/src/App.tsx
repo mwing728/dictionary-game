@@ -402,9 +402,7 @@ function RevealView({ room }: { room: RoomView }) {
               option.isCorrect ? "option-card--correct" : ""
             }`}
           >
-            <span className="option-card__label">
-              {option.isCorrect ? getCorrectOptionLabel(promptKind) : option.authorId ? getPlayerOptionLabel(promptKind) : "Option"}
-            </span>
+            <span className="option-card__label">{getRevealOptionLabel(room, option, promptKind)}</span>
             <strong>{option.text}</strong>
             {typeof option.voteCount === "number" ? <span>{option.voteCount} vote(s)</span> : null}
           </div>
@@ -564,6 +562,23 @@ function getCorrectOptionLabel(promptKind: PromptKind): string {
 
 function getPlayerOptionLabel(promptKind: PromptKind): string {
   return promptKind === "bibleVerse" ? "Player reference" : "Player definition";
+}
+
+function getRevealOptionLabel(
+  room: RoomView,
+  option: NonNullable<RoomView["round"]>["options"][number],
+  promptKind: PromptKind,
+): string {
+  if (option.isCorrect) {
+    return getCorrectOptionLabel(promptKind);
+  }
+
+  if (!option.authorId) {
+    return "Option";
+  }
+
+  const author = room.players.find((player) => player.id === option.authorId);
+  return author ? `Submitted by ${author.name}` : getPlayerOptionLabel(promptKind);
 }
 
 function getAdvanceLabel(room: RoomView): string {
