@@ -202,7 +202,7 @@ export interface RoomEndedEvent {
 
 export const DEFAULT_SETTINGS: GameSettings = {
   totalRounds: 20,
-  maxPlayers: 8,
+  maxPlayers: 25,
   submissionSeconds: 90,
   votingSeconds: 30,
   revealSeconds: 10,

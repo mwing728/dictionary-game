@@ -222,10 +222,6 @@ export function castVote(room: RoomSnapshot, playerId: string, optionId: string,
     throw new GameError("You cannot vote for your own submitted answer.");
   }
 
-  if (round.votes[playerId]) {
-    throw new GameError("You have already locked in a vote.");
-  }
-
   round.votes[playerId] = {
     voterId: playerId,
     optionId,

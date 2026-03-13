@@ -270,6 +270,47 @@ describe("game engine", () => {
     expect(room.activeRound?.votes).toEqual({});
   });
 
+  it("lets players change their vote before voting ends", () => {
+    const room = createRoom("SWAP", { name: "Host" });
+    const alice = joinRoom(room, "Alice");
+    const bob = joinRoom(room, "Bob");
+    const cara = joinRoom(room, "Cara");
+
+    startGame(room, focusedPromptBanks, 1000);
+    submitDefinition(room, alice.id, "A church custom for sorting printed bulletins.", 2000);
+    submitDefinition(room, bob.id, "A bell rung before the choir enters.", 3000);
+    submitDefinition(room, cara.id, "A brass token given to lighthouse keepers.", 4000);
+
+    const realOption = room.activeRound?.options.find((option: RoundOption) => option.kind === "real");
+    const bobBluff = room.activeRound?.options.find((option: RoundOption) => option.authorId === bob.id);
+    const caraBluff = room.activeRound?.options.find((option: RoundOption) => option.authorId === cara.id);
+
+    expect(realOption).toBeDefined();
+    expect(bobBluff).toBeDefined();
+    expect(caraBluff).toBeDefined();
+
+    castVote(room, alice.id, bobBluff!.id, 5000);
+    expect(room.phase).toBe("voting");
+    expect(room.activeRound?.votes[alice.id]?.optionId).toBe(bobBluff!.id);
+
+    castVote(room, alice.id, realOption!.id, 5500);
+    expect(room.phase).toBe("voting");
+    expect(room.activeRound?.votes[alice.id]?.optionId).toBe(realOption!.id);
+
+    castVote(room, bob.id, realOption!.id, 6000);
+    castVote(room, cara.id, bobBluff!.id, 7000);
+
+    expect(room.phase).toBe("reveal");
+    expect(room.players[alice.id]?.score).toBe(2);
+    expect(room.players[bob.id]?.score).toBe(3);
+    expect(room.players[cara.id]?.score).toBe(0);
+
+    const revealedRealOption = room.activeRound?.options.find((option: RoundOption) => option.kind === "real");
+    const revealedBobBluff = room.activeRound?.options.find((option: RoundOption) => option.authorId === bob.id);
+    expect(revealedRealOption?.voteCount).toBe(2);
+    expect(revealedBobBluff?.voteCount).toBe(1);
+  });
+
   it("persists snapshots for restart recovery", () => {
     const room = createRoom("SAVE", { name: "Archivist" });
     const guest = joinRoom(room, "Historian");

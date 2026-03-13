@@ -90,6 +90,7 @@ function App() {
   const hostPlayer = room.players.find((player) => player.isHost);
   const participantPlayers = room.players.filter((player) => !player.isHost);
   const isHost = Boolean(me?.isHost);
+  const isParticipantPlayPhase = !isHost && (room.phase === "submission" || room.phase === "voting");
 
   return (
     <main className="shell shell--game">
@@ -103,72 +104,74 @@ function App() {
         </div>
         <div className="topbar__actions">
           <span className="phase-tag">{phaseCopy.label}</span>
-          <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} />
+          {!isParticipantPlayPhase ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
           <Button variant="ghost" onClick={() => actions.disconnect()}>
             Leave
           </Button>
         </div>
       </header>
 
-      <section className="layout">
-        <aside className="sidebar">
-          <Card className="scoreboard-card">
-            <h2>Players</h2>
-            <div className="score-list">
-              {participantPlayers.map((player, index) => (
-                <div key={player.id} className={`score-row ${player.id === room.meId ? "score-row--me" : ""}`}>
-                  <div>
-                    <strong>
-                      {index + 1}. {player.name}
-                    </strong>
-                    <span>{player.connected ? "Online" : "Reconnecting"}</span>
+      <section className={`layout ${isParticipantPlayPhase ? "layout--single" : ""}`}>
+        {!isParticipantPlayPhase ? (
+          <aside className="sidebar">
+            <Card className="scoreboard-card">
+              <h2>Players</h2>
+              <div className="score-list">
+                {participantPlayers.map((player, index) => (
+                  <div key={player.id} className={`score-row ${player.id === room.meId ? "score-row--me" : ""}`}>
+                    <div>
+                      <strong>
+                        {index + 1}. {player.name}
+                      </strong>
+                      <span>{player.connected ? "Online" : "Reconnecting"}</span>
+                    </div>
+                    <div className="score-row__score">{player.score}</div>
                   </div>
-                  <div className="score-row__score">{player.score}</div>
-                </div>
-              ))}
-            </div>
-          </Card>
+                ))}
+              </div>
+            </Card>
 
-          <Card>
-            <h2>{isHost ? "Host panel" : "Round panel"}</h2>
-            <p>{phaseCopy.description}</p>
-            <div className="pill-grid">
-              <span className="stat-pill">{participantPlayers.length} players</span>
-              <span className="stat-pill">{room.settings.totalRounds} rounds</span>
-            </div>
-            {room.phase === "lobby" && room.canStart ? (
-              <Button wide onClick={() => actions.startGame()}>
-                Start game
-              </Button>
-            ) : null}
-            {room.canAdvance ? (
-              <Button wide variant="secondary" onClick={() => actions.advance()}>
-                {getAdvanceLabel(room)}
-              </Button>
-            ) : null}
-            {isHost ? (
-              <Button
-                wide
-                variant="ghost"
-                onClick={() => {
-                  if (window.confirm("End this room and remove everyone from the session?")) {
-                    actions.endRoom();
-                  }
-                }}
-              >
-                End room
-              </Button>
-            ) : null}
-            <div className="host-summary">
-              <span className="host-badge">{hostPlayer?.name ?? "Host"} is moderating</span>
-            </div>
-          </Card>
-        </aside>
+            <Card>
+              <h2>{isHost ? "Host panel" : "Round panel"}</h2>
+              <p>{phaseCopy.description}</p>
+              <div className="pill-grid">
+                <span className="stat-pill">{participantPlayers.length} players</span>
+                <span className="stat-pill">{room.settings.totalRounds} rounds</span>
+              </div>
+              {room.phase === "lobby" && room.canStart ? (
+                <Button wide onClick={() => actions.startGame()}>
+                  Start game
+                </Button>
+              ) : null}
+              {room.canAdvance ? (
+                <Button wide variant="secondary" onClick={() => actions.advance()}>
+                  {getAdvanceLabel(room)}
+                </Button>
+              ) : null}
+              {isHost ? (
+                <Button
+                  wide
+                  variant="ghost"
+                  onClick={() => {
+                    if (window.confirm("End this room and remove everyone from the session?")) {
+                      actions.endRoom();
+                    }
+                  }}
+                >
+                  End room
+                </Button>
+              ) : null}
+              <div className="host-summary">
+                <span className="host-badge">{hostPlayer?.name ?? "Host"} is moderating</span>
+              </div>
+            </Card>
+          </aside>
+        ) : null}
 
         <section className="main-panel">
-          <Card className="round-card">
-            <div className="round-header">
-              <div>
+          <Card className={`round-card ${isParticipantPlayPhase ? "round-card--play-focus" : ""}`}>
+            <div className={`round-header ${isParticipantPlayPhase ? "round-header--play-focus" : ""}`}>
+              <div className={isParticipantPlayPhase ? "round-header__content round-header__content--play-focus" : ""}>
                 <span className="hero__eyebrow">
                   {room.round ? `${room.round.promptLabel} · ${room.round.category}` : "Warmup"}
                 </span>
@@ -176,7 +179,10 @@ function App() {
                   {room.round?.promptText ?? "Waiting in lobby"}
                 </h2>
               </div>
-              <div className="difficulty-pill">{room.round?.difficulty ?? "party"}</div>
+              <div className={`round-header__meta ${isParticipantPlayPhase ? "round-header__meta--play-focus" : ""}`}>
+                {isParticipantPlayPhase ? <PhaseTimer deadlineAt={room.round?.deadlineAt ?? null} /> : null}
+                <div className="difficulty-pill">{room.round?.difficulty ?? "party"}</div>
+              </div>
             </div>
 
             {room.phase === "lobby" ? <LobbyView room={room} /> : null}
@@ -287,8 +293,8 @@ function SubmissionView({
   const submissionCopy = getSubmissionCopy(roundKind);
 
   return (
-    <div className="phase-panel">
-      <p className="lead">{submissionCopy.description}</p>
+    <div className="phase-panel phase-panel--play-focus">
+      <p className="lead lead--play-focus">{submissionCopy.description}</p>
       {room.round?.hasSolved ? (
         <div className="moderator-card">
           <span className="hero__eyebrow">Correct answer locked in</span>
@@ -303,23 +309,23 @@ function SubmissionView({
         </div>
       ) : (
         <>
-      <label className="field">
-        <span>{submissionCopy.label}</span>
-        <textarea
-          value={definition}
-          onChange={(event) => setDefinition(event.target.value)}
-          placeholder={submissionCopy.placeholder}
-          rows={5}
-        />
-      </label>
-      <div className="phase-footer">
-        <span className="stat-pill">
-          {room.round?.submissionsCount}/{room.round?.playersNeeded} submitted
-        </span>
-        <Button onClick={() => onSubmit(definition)}>
-          {room.round?.hasSubmitted ? "Update response" : "Send response"}
-        </Button>
-      </div>
+          <label className="field field--play-focus">
+            <span>{submissionCopy.label}</span>
+            <textarea
+              value={definition}
+              onChange={(event) => setDefinition(event.target.value)}
+              placeholder={submissionCopy.placeholder}
+              rows={5}
+            />
+          </label>
+          <div className="phase-footer">
+            <span className="stat-pill">
+              {room.round?.submissionsCount}/{room.round?.playersNeeded} submitted
+            </span>
+            <Button className={room.round?.hasSubmitted ? "button--update" : ""} onClick={() => onSubmit(definition)}>
+              {room.round?.hasSubmitted ? "Update response" : "Send response"}
+            </Button>
+          </div>
         </>
       )}
     </div>
@@ -338,21 +344,20 @@ function VotingView({
   const promptKind = room.round?.promptKind ?? "word";
 
   return (
-    <div className="phase-panel">
-      <p className="lead">{getVotingCopy(promptKind)}</p>
-      <div className="option-list">
+    <div className="phase-panel phase-panel--play-focus">
+      <p className="lead lead--play-focus">{getVotingCopy(promptKind)}</p>
+      <div className="option-list option-list--compact">
         {room.round?.options.map((option) => (
           <button
             key={option.id}
             className={`option-card ${selectedOptionId === option.id ? "option-card--selected" : ""}`}
-            disabled={room.round?.hasVoted}
             onClick={() => {
               setPendingOptionId(option.id);
               onVote(option.id);
             }}
           >
             <span className="option-card__label">
-              {selectedOptionId === option.id ? "Selected" : "Tap to choose"}
+              {selectedOptionId === option.id ? "Selected for now" : "Tap to choose"}
             </span>
             <strong>{option.text}</strong>
           </button>

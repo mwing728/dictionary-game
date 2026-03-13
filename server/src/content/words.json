@@ -7,11 +7,11 @@
     "difficulty": "easy"
   },
   {
-    "id": "callipygian",
-    "word": "callipygian",
-    "definition": "having shapely buttocks",
-    "category": "Body",
-    "difficulty": "medium"
+    "id": "benediction",
+    "word": "benediction",
+    "definition": "a spoken blessing, especially at the close of a worship service",
+    "category": "Church",
+    "difficulty": "easy"
   },
   {
     "id": "crepuscular",
@@ -21,11 +21,11 @@
     "difficulty": "easy"
   },
   {
-    "id": "defenestration",
-    "word": "defenestration",
-    "definition": "the act of throwing something or someone out of a window",
-    "category": "History",
-    "difficulty": "easy"
+    "id": "doxology",
+    "word": "doxology",
+    "definition": "a short hymn or verse of praise to God",
+    "category": "Church",
+    "difficulty": "medium"
   },
   {
     "id": "ephemeral",
@@ -35,18 +35,18 @@
     "difficulty": "easy"
   },
   {
-    "id": "floccinaucinihilipilification",
-    "word": "floccinaucinihilipilification",
-    "definition": "the act of describing something as unimportant",
-    "category": "Language",
-    "difficulty": "hard"
+    "id": "epistle",
+    "word": "epistle",
+    "definition": "a formal letter, especially one found in the New Testament",
+    "category": "Scripture",
+    "difficulty": "medium"
   },
   {
-    "id": "gobemouche",
-    "word": "gobemouche",
-    "definition": "a gullible or easily deceived person",
-    "category": "People",
-    "difficulty": "hard"
+    "id": "fellowship",
+    "word": "fellowship",
+    "definition": "friendly shared life, encouragement, and community among people",
+    "category": "Church",
+    "difficulty": "easy"
   },
   {
     "id": "halcyon",
@@ -63,25 +63,18 @@
     "difficulty": "medium"
   },
   {
-    "id": "jentacular",
-    "word": "jentacular",
-    "definition": "relating to breakfast",
-    "category": "Food",
-    "difficulty": "hard"
-  },
-  {
-    "id": "limerence",
-    "word": "limerence",
-    "definition": "the state of being infatuated with another person",
-    "category": "Emotion",
+    "id": "hosanna",
+    "word": "hosanna",
+    "definition": "an exclamation of praise, adoration, or joyful appeal to God",
+    "category": "Worship",
     "difficulty": "medium"
   },
   {
-    "id": "nemophilist",
-    "word": "nemophilist",
-    "definition": "a person who loves forests or woods",
-    "category": "Nature",
-    "difficulty": "medium"
+    "id": "parable",
+    "word": "parable",
+    "definition": "a simple story used to teach a moral or spiritual lesson",
+    "category": "Scripture",
+    "difficulty": "easy"
   },
   {
     "id": "petrichor",
@@ -91,13 +84,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "quirk",
-    "word": "quidnunc",
-    "definition": "a person eager to know and discuss the latest news and gossip",
-    "category": "People",
-    "difficulty": "hard"
-  },
-  {
     "id": "raconteur",
     "word": "raconteur",
     "definition": "a person who tells stories in an entertaining way",
@@ -105,10 +91,24 @@
     "difficulty": "easy"
   },
   {
+    "id": "selah",
+    "word": "selah",
+    "definition": "a term in the Psalms often understood as a pause for reflection",
+    "category": "Scripture",
+    "difficulty": "hard"
+  },
+  {
     "id": "sonder",
     "word": "sonder",
     "definition": "the realization that every passerby has a life as vivid and complex as your own",
     "category": "Emotion",
+    "difficulty": "medium"
+  },
+  {
+    "id": "stewardship",
+    "word": "stewardship",
+    "definition": "the careful and responsible management of something entrusted to your care",
+    "category": "Church",
     "difficulty": "medium"
   }
 ]
