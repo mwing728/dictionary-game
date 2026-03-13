@@ -524,6 +524,85 @@ textarea {
   color: #9b7b54;
 }
 
+.reveal-points {
+  display: grid;
+  gap: 1rem;
+}
+
+.reveal-points__hero {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.2rem 1.25rem;
+  border: 1px solid rgba(184, 142, 91, 0.26);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(251, 242, 217, 0.96), rgba(241, 224, 188, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42), 0 16px 36px rgba(159, 111, 77, 0.14);
+}
+
+.reveal-points__hero--earned {
+  border-color: rgba(123, 143, 103, 0.3);
+  background: linear-gradient(135deg, rgba(239, 247, 227, 0.98), rgba(220, 234, 198, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.48), 0 18px 40px rgba(123, 143, 103, 0.18);
+}
+
+.reveal-points__total {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1;
+  font-weight: 900;
+  color: #4d3a29;
+}
+
+.reveal-points__copy {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #6b5540;
+}
+
+.reveal-points__list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.reveal-points__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(176, 142, 99, 0.16);
+  background: rgba(255, 252, 247, 0.94);
+}
+
+.reveal-points__row--me {
+  border-color: rgba(123, 143, 103, 0.34);
+  background: rgba(240, 245, 233, 0.95);
+}
+
+.reveal-points__name {
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4c3b2d;
+}
+
+.reveal-points__value {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #5b4736;
+}
+
+.reveal-points__empty {
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(176, 142, 99, 0.28);
+  color: #7d6853;
+  background: rgba(255, 251, 245, 0.82);
+  text-align: center;
+  font-weight: 700;
+}
+
 .toast {
   position: fixed;
   right: 1rem;

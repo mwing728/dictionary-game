@@ -386,6 +386,10 @@ function SolvedRoundView({ promptKind }: { promptKind: PromptKind }) {
 
 function RevealView({ room }: { room: RoomView }) {
   const promptKind = room.round?.promptKind ?? "word";
+  const revealScoreRows = room.round?.reveal ? getRevealScoreRows(room) : [];
+  const myRoundPoints = revealScoreRows.find((row) => row.playerId === room.meId)?.points ?? 0;
+  const myRoundPointsLabel =
+    myRoundPoints === 1 ? "You earned 1 point this round." : `You earned ${myRoundPoints} points this round.`;
 
   return (
     <div className="phase-panel">
@@ -410,20 +414,29 @@ function RevealView({ room }: { room: RoomView }) {
       </div>
 
       {room.round?.reveal ? (
-        <div className="delta-list">
-          {room.round.reveal.scoreDeltas.length === 0 ? (
-            <span className="stat-pill">No points this round</span>
+        <Card className="reveal-points">
+          <div className={`reveal-points__hero ${myRoundPoints > 0 ? "reveal-points__hero--earned" : ""}`}>
+            <span className="hero__eyebrow">Your round total</span>
+            <strong className="reveal-points__total">{myRoundPoints > 0 ? `+${myRoundPoints}` : "0"}</strong>
+            <p className="reveal-points__copy">{myRoundPointsLabel}</p>
+          </div>
+
+          {revealScoreRows.length > 0 ? (
+            <div className="reveal-points__list" aria-label="Round points earned by player">
+              {revealScoreRows.map((row) => (
+                <div
+                  className={`reveal-points__row ${row.playerId === room.meId ? "reveal-points__row--me" : ""}`}
+                  key={row.playerId}
+                >
+                  <span className="reveal-points__name">{row.name}</span>
+                  <strong className="reveal-points__value">+{row.points}</strong>
+                </div>
+              ))}
+            </div>
           ) : (
-            room.round.reveal.scoreDeltas.map((delta, index) => {
-              const player = room.players.find((candidate) => candidate.id === delta.playerId);
-              return (
-                <span className="stat-pill" key={`${delta.playerId}-${index}`}>
-                  {player?.name ?? "Player"} +{delta.points}
-                </span>
-              );
-            })
+            <div className="reveal-points__empty">No one scored points this round.</div>
           )}
-        </div>
+        </Card>
       ) : null}
 
       {room.phase === "finished" ? (
@@ -581,6 +594,22 @@ function getRevealOptionLabel(
 
   const author = room.players.find((player) => player.id === option.authorId);
   return author ? `Submitted by ${author.name}` : getPlayerOptionLabel(promptKind);
+}
+
+function getRevealScoreRows(room: RoomView): Array<{ playerId: string; name: string; points: number }> {
+  const totals = new Map<string, number>();
+
+  for (const delta of room.round?.reveal?.scoreDeltas ?? []) {
+    totals.set(delta.playerId, (totals.get(delta.playerId) ?? 0) + delta.points);
+  }
+
+  return [...totals.entries()]
+    .map(([playerId, points]) => ({
+      playerId,
+      name: room.players.find((player) => player.id === playerId)?.name ?? "Player",
+      points,
+    }))
+    .sort((left, right) => right.points - left.points || left.name.localeCompare(right.name));
 }
 
 function getAdvanceLabel(room: RoomView): string {
